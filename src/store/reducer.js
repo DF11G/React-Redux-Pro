@@ -1,4 +1,4 @@
-import { CHANGE_INPUT_VALUE, CHANGE_LIST_VALUE, CHANGE_DELETE_VALUE } from './Actiontype.js'
+import { CHANGE_INPUT_VALUE, CHANGE_LIST_VALUE, CHANGE_DELETE_VALUE, GET_INIT_LIST} from './Actiontype.js'
 
 const defaultState = {
     inputValue: 'Hello!',
@@ -18,6 +18,10 @@ export default (state = defaultState, action) => {
     } else if (action.type === CHANGE_DELETE_VALUE) {
         const newState = JSON.parse(JSON.stringify(state))
         newState.list.splice(action.value, 1)
+        return newState
+    } else if (action.type === GET_INIT_LIST) {
+        const newState = JSON.parse(JSON.stringify(state))
+        newState.list = action.value
         return newState
     }
     return state
